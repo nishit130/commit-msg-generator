@@ -16,7 +16,7 @@ Auto-generate git commit messages using Claude AI. This tool uses AI to analyze 
 ### Option 1: Install from local directory (for your team)
 
 ```bash
-pip install git+https://github.com/yourteam/commit-msg-generator.git
+pip install git+https://github.com/nishit130/commit-msg-generator.git
 ```
 
 Or if sharing locally:
