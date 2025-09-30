@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "commit-msg-generator"
+version = "0.1.0"
+description = "Auto-generate git commit messages using Claude AI"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "anthropic>=0.18.0",
+]
+
+[project.scripts]
+generate-commit-msg = "commit_msg_generator.generator:prepare_commit_msg"
+install-commit-msg-hook = "commit_msg_generator.cli:install_hook"
+uninstall-commit-msg-hook = "commit_msg_generator.cli:uninstall_hook"
+commit-msg-config = "commit_msg_generator.cli:configure"
