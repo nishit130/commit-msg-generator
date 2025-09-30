@@ -17,11 +17,14 @@ def get_staged_diff():
         )
         diff = result.stdout
 
-        # Limit to approximately 1000 tokens (roughly 4000 characters)
-        # This is a rough estimate: 1 token ≈ 4 characters
-        max_chars = 4000
+        # Load configuration to get max_tokens for input analysis
+        config = load_config()
+        max_input_tokens = config['max_tokens']
+
+        # Limit diff based on max_tokens (roughly 4 characters per token)
+        max_chars = max_input_tokens * 4
         if len(diff) > max_chars:
-            diff = diff[:max_chars] + "\n\n[... diff truncated to fit token limit ...]"
+            diff = diff[:max_chars] + f"\n\n[... diff truncated to fit {max_input_tokens} token limit ...]"
 
         return diff
     except subprocess.CalledProcessError as e:
@@ -40,7 +43,6 @@ def generate_commit_message(diff):
     # Load configuration
     config = load_config()
     model = config['model']
-    max_tokens = config['max_tokens']
     prompt_template = config['prompt']
 
     # Format the prompt with the diff
@@ -49,9 +51,10 @@ def generate_commit_message(diff):
     try:
         client = Anthropic(api_key=api_key)
 
+        # Use fixed output token limit for commit message generation
         message = client.messages.create(
             model=model,
-            max_tokens=max_tokens,
+            max_tokens=500,  # Fixed reasonable limit for commit message output
             messages=[{
                 "role": "user",
                 "content": prompt

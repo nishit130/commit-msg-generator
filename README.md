@@ -6,7 +6,7 @@ Auto-generate git commit messages using Claude AI. This tool uses AI to analyze 
 
 - 🤖 Automatically generates commit messages using Claude AI
 - 📝 Follows conventional commit format (feat, fix, docs, etc.)
-- ⚡ Limits context to ~1000 tokens for efficient API usage
+- ⚡ Configurable token limit for analyzing diffs (default: 1000 tokens)
 - ✏️ Lets you edit the generated message before committing
 - 🔧 Easy installation via pip
 - ⚙️ Fully configurable (model, tokens, prompt)
@@ -94,10 +94,13 @@ Available models:
 - `claude-3-5-sonnet-latest` (more capable)
 - `claude-opus-4-latest` (most capable)
 
-### Change max tokens
+### Change max tokens for diff analysis
+
+Controls how much of the git diff is analyzed (default: 1000 tokens).
 
 ```bash
-commit-msg-config set max_tokens 1000
+commit-msg-config set max_tokens 2000  # Analyze more changes
+commit-msg-config set max_tokens 500   # Analyze less (faster, cheaper)
 ```
 
 ### Customize the prompt
@@ -123,7 +126,7 @@ commit-msg-config reset
 
 You can also override configuration using environment variables:
 - `COMMIT_MSG_MODEL` - Model to use
-- `COMMIT_MSG_MAX_TOKENS` - Max tokens for response
+- `COMMIT_MSG_MAX_TOKENS` - Max tokens for analyzing the git diff (input)
 - `COMMIT_MSG_PROMPT` - Custom prompt template
 
 ```bash
@@ -145,7 +148,7 @@ uninstall-commit-msg-hook
 ## How It Works
 
 - Uses a `prepare-commit-msg` git hook
-- Analyzes up to ~1000 tokens of your staged diff
+- Analyzes your staged diff (configurable token limit, default: 1000 tokens)
 - Calls Claude AI to generate a conventional commit message
 - Prepopulates your commit message editor with the suggestion
 

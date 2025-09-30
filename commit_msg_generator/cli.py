@@ -108,7 +108,7 @@ def configure():
             print("", file=sys.stderr)
             print("Available keys:", file=sys.stderr)
             print("  model        - Claude model to use (e.g., claude-3-5-haiku-latest)", file=sys.stderr)
-            print("  max_tokens   - Maximum tokens for response (e.g., 500)", file=sys.stderr)
+            print("  max_tokens   - Max tokens for analyzing git diff input (e.g., 1000)", file=sys.stderr)
             print("  prompt       - Custom prompt template (must include {diff})", file=sys.stderr)
             sys.exit(1)
 

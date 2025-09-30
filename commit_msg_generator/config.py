@@ -6,7 +6,7 @@ from typing import Optional, Dict, Any
 
 DEFAULT_CONFIG = {
     "model": "claude-3-5-haiku-latest",
-    "max_tokens": 500,
+    "max_tokens": 1000,  # Max tokens for analyzing the git diff (input)
     "prompt": """Based on the following git diff, write a concise commit message following conventional commit format.
 
 The format should be: <type>: <description>
