@@ -152,38 +152,6 @@ uninstall-commit-msg-hook
 - Calls Claude AI to generate a conventional commit message
 - Prepopulates your commit message editor with the suggestion
 
-## Sharing with Your Team
-
-### Method 1: Git Repository
-
-1. Push this package to a git repository (GitHub, GitLab, etc.)
-2. Team members install with:
-```bash
-pip install git+https://github.com/yourteam/commit-msg-generator.git
-```
-
-### Method 2: Private PyPI Server
-
-1. Build the package:
-```bash
-pip install build
-python -m build
-```
-
-2. Upload to your private PyPI server
-3. Team members install with:
-```bash
-pip install commit-msg-generator --index-url https://your-pypi-server.com
-```
-
-### Method 3: Shared Network Drive
-
-1. Share the directory
-2. Team members install with:
-```bash
-pip install /path/to/shared/commit-message
-```
-
 ## Requirements
 
 - Python 3.8+
